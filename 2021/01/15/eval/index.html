@@ -96,7 +96,7 @@
 <meta property="og:site_name" content="何幻">
 <meta property="og:description" content="背景上一篇文章中，我们编写了一个简单的 parser， 将字符串转换成了有结构的数据 AST， 也提到了 parser 其实只是编译领域中很小的一部分业务。  对于每一种常见的编程语言来说，一般都有很多成熟的 parser 库供选择， 很少有场景需要从零开始实现一个 parser。 但我们不同，为了练习，为一门极简的编程语言实现一个 parser。  本文我们将继续往下写，给这门语言实现一个简单的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-01-15T13:35:20.087Z">
+<meta property="og:updated_time" content="2021-01-18T11:34:47.251Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何编写一个简单的解释器">
 <meta name="twitter:description" content="背景上一篇文章中，我们编写了一个简单的 parser， 将字符串转换成了有结构的数据 AST， 也提到了 parser 其实只是编译领域中很小的一部分业务。  对于每一种常见的编程语言来说，一般都有很多成熟的 parser 库供选择， 很少有场景需要从零开始实现一个 parser。 但我们不同，为了练习，为一门极简的编程语言实现一个 parser。  本文我们将继续往下写，给这门语言实现一个简单的">
@@ -423,7 +423,7 @@
 <p>这个结果会 <code>102</code>，而不是 <code>3</code>。</p>
 <p><br></p>
 <p>我们改写成 js 代码来看看，到底有什么问题。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const f = x =&gt; &#123;</span><br><span class="line">  return y =&gt; &#123;</span><br><span class="line">    return x + y;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">const g = f(1);</span><br><span class="line">const x = 1;</span><br><span class="line"></span><br><span class="line">console.log(g(2));  // 3</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const f = x =&gt; &#123;</span><br><span class="line">  return y =&gt; &#123;</span><br><span class="line">    return x + y;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">const g = f(1);</span><br><span class="line">const x = 100;</span><br><span class="line"></span><br><span class="line">console.log(g(2));  // 3</span><br></pre></td></tr></table></figure>
 <p>由于 js 是的作用域规则是静态的（词法的），不是我们刚才实现的那种动态的，</p>
 <p>所以，在 js 中执行上述代码会返回 <code>3</code>。</p>
 <p>因为 <code>x</code> 的值会被 “闭包” 在 <code>f</code> 中，外层设置 <code>x = 1</code> 不会影响到它。</p>
